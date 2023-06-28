@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>View Tickets</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/view.css}">
+</head>
+<body>
+<!-- Main Container -->
+<div class="container"> 
+  <!-- Header -->
+  <div class="header">
+    <h4 class="logo">Tickets</h4>
+  </div>
+  <!-- Main -->
+  <div class="main">
+	<table border=0.5>
+		<tr class="tableheader">
+			<th>ID</th>
+			<th>User Name</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Date</th>
+			<th>Venue</th>
+			<th>Pet Allowed</th>
+			<th>Parking Allowed</th>
+			<th colspan="2" id="actions">Actions</th>
+		</tr>
+		<tr th:each=" t : ${ticket} ">
+			<td th:text="${t.id}">a</td>
+			<td th:text="${t.userName}">a</td>
+			<td th:text="${t.name}">a</td>
+			<td th:text="${t.price}">a</td>
+			<td th:text="${t.date}">a</td>
+			<td th:text="${t.venue}">a</td>
+			<td th:text="${t.petAllowed}">a</td>
+			<td th:text="${t.parkingAllowed}">a</td>
+			<td class="action-btn"><a th:href="@{/edit/{id}(id=${t.id})}">EDIT</a></td>
+			<td class="action-btn"><a th:href="@{/delete/{id}(id=${t.id})}">DELETE</a></td>
+		</tr>	
+	</table>
+</div>
+  
+  <!-- Footer Section -->
+  
+  <div class="footer" id="contact">
+	  <p class="hero_header">Navigation Links</p>
+		<div class="nav-buttons">
+	      <a th:href="@{/}"><div class="button">Home Page</div></a>
+		  <a th:href="@{/add}"><div class="button">Add Tickets</div></a>
+		  <a th:href="@{/viewUsers}"><div class="button">View Users</div></a>
+		  <div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="button">Logout</button>
+			</form>
+			</div>
+	    </div>
+   </div>
+</div>
+<!-- Main Container Ends -->
+</body>
+</html>

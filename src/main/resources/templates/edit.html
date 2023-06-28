@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Ticket</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/add.css}">
+
+</head>
+<body>
+<!-- Main Container -->
+<div class="container"> 
+  <!-- Header -->
+  <div class="header">
+    <h4 class="logo">Edit Ticket</h4>
+  </div>
+  <!-- Main -->
+  <div class="main">
+      <form th:action="@{/editTicket}" method="post" th:object="${ticket}">
+      <input type="hidden" th:field="*{id}">
+	<div class="field">Name:<input type="text" th:field="*{name}"></div>
+	<div class="field">Price:<input type="number" step="0.01" th:field="*{price}"></div>
+	<div class="field">Date:<select th:field="*{date}">
+		<option th:each="d : *{dates}"
+				th:text="${d}" th:value="${d}"> 
+	</select></div>
+	<div class="field">Venue:<input type="text" th:field="*{venue}"></div>
+	<div class="field">is Pet Allowed?:<select th:field="*{petAllowed}">
+		<option th:each="pav : *{paValues}"
+				th:text="${pav}" th:value="${pav}"> 
+	</select></div>
+	<div class="field">is Parking Allowed?:<select th:field="*{parkingAllowed}">
+		<option th:each="pav : *{paValues}"
+				th:text="${pav}" th:value="${pav}"> 
+	</select></div>
+	<button type="submit" class="button">Edit</button>
+</form>
+  </div>
+  <!-- Footer Section -->
+  
+  <div class="footer" id="contact">
+	  <p class="hero_header">Navigation Links</p>
+	<div class="nav-buttons">
+	      <a href="/"><div class="button">Home Page</div></a>		  
+		  <a href="/view"><div class="button">View Tickets</div></a>
+		  <a href="/stats"><div class="button">View Stats</div></a>
+	    </div>
+	</div>
+</div>
+
+</body>
+</html>

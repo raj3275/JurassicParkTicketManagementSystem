@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Tickets</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/add.css}">
+
+</head>
+<body>
+<!-- Main Container -->
+<div class="container"> 
+  <!-- Header -->
+  <div class="header">
+    <h4 class="logo">Add Tickets</h4>
+  </div>
+  <!-- Main -->
+  <div class="main">
+  <form th:action="@{/process}" th:object="${ticket}">
+	<div class="field">User Name:<select th:field="*{userName}">
+		<option th:each="u : ${userName}" th:text="${u.userName}" th:value="${u.userName}"></option> 
+	</select></div>
+	<div class="field">Name:<input type="text" th:field="*{name}"></div>
+	<div class="field">Price:<input type="number" step="0.01" th:field="*{price}"></div>
+	<div class="field">Date:<select th:field="*{date}">
+		<option th:each="d : *{dates}"
+				th:text="${d}" th:value="${d}"></option>
+	</select></div>
+	<div class="field">Venue:<input type="text" th:field="*{venue}"></div>
+	<div class="field">is Pet Allowed?:<select th:field="*{petAllowed}">
+		<option th:each="pav : *{paValues}"
+				th:text="${pav}" th:value="${pav}"> 
+	</select></div>
+	<div class="field">is Parking Allowed?:<select th:field="*{parkingAllowed}">
+		<option th:each="pav : *{paValues}"
+				th:text="${pav}" th:value="${pav}"></option> 
+	</select></div>
+	<button type="submit" class="button">Add</button>
+</form>
+  </div>
+  <!-- Footer Section -->
+  
+  <div class="footer" id="contact">
+	  <p class="hero_header">Navigation Links</p>
+	<div class="nav-buttons">
+	      <a th:href="@{/}"><div class="button">Home Page</div></a>		  
+		  <a th:href="@{/view}"><div class="button">View Tickets</div></a>
+		  <a th:href="@{/viewUsers}"><div class="button">View Users</div></a>
+		  <div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="button">Logout</button>
+			</form>
+			</div>
+	    </div>
+	</div>
+</div>
+
+</body>
+</html>

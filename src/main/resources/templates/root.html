@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Jurassic Quest</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/add.css}">
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+  <div class="header">
+    <h4 class="logo">Jurassic Quest!</h4>
+  </div>
+  <!-- Main -->
+  
+  <div class="main">
+	 <img th:src="@{/images/img1.jpg}" width=100% height=100%>
+  </div>
+  
+  <!-- Footer Section -->
+  
+	<div class="footer" id="contact">
+		<p class="hero_header">Navigation Links</p>
+		<div class="nav-buttons">
+			<a th:href="@{/add}"><div class="button">Add Tickets</div></a>
+			<a th:href="@{/view}"><div class="button">View Tickets</div></a>
+			<a th:href="@{/viewUsers}"><div class="button">View Users</div></a>
+			<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="button">Logout</button>
+			</form>
+			</div>
+	    </div>
+	    </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/add.css}">
+</head>
+<body>
+<!-- Main Container -->
+<div class="container"> 
+  <!-- Header -->
+  <div class="header">
+    <h4 class="logo">Login Page</h4>
+  </div>
+  <!-- Main -->
+  <div class="main">
+      <form th:action="@{/login}" method="post">
+      <div th:if="${param.error}" style="color:red;">
+	The username or password was incorrect.
+</div>
+	<div class="field">User Name:<input type="text" name="username"
+			autofocus placeholder="Username"></div>
+	<div class="field">Password:<input type="password" name="password"
+			placeholder="Password"></div>
+	<button type="submit" class="button">Login</button><br>
+	<a th:href="@{/register}"><button type="button" class="button">Guest Registration</button></a>
+</form>
+  </div>
+  <!-- Footer Section -->
+  
+  <div class="footer" id="contact">
+	  <p class="hero_header">Navigation Links</p>
+	<div class="nav-buttons">
+	      <a th:href="@{/}"><div class="button">Home Page</div></a>
+	    </div>
+	</div>
+</div>
+
+</body>
+</html>
